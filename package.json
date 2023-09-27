@@ -5,6 +5,9 @@
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
+  "engine": {
+    "node": "^16 || ^18"
+},
   "dependencies": {
     "@sap/cds": "^7",
     "express": "^4",
@@ -18,8 +21,13 @@
     "start": "cds-serve"
   },
   "cds": {
+    "hana" :{
+      "deploy-format":  "hdbtable"
+    },
     "requires": {
-      "db": "hana"
+      "db": {
+        "kind": "hana"
+      }
     }
   }
 }
