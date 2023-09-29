@@ -1,0 +1,14 @@
+PROCEDURE "get_supplier_info" ( out result "HC450_OFFICESUPPLIES_SUPPLIERS")
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER
+    READS SQL DATA AS
+BEGIN
+
+    TAB_EXC_US = Select * from "HC450_OFFICESUPPLIES_SUPPLIERS" where COUNTRY != 'US';
+
+    TAB_US = Select * from "HC450_OFFICESUPPLIES_SUPPLIERS" where COUNTRY = 'US';
+
+    TAB_ALL = Select * from :TAB_EXC_US UNION ALL Select * from :TAB_US;
+
+    result = Select * from :TAB_ALL;
+END
